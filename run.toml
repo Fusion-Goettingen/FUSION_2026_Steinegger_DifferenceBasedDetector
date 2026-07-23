@@ -1,0 +1,39 @@
+[defaults.dataloader]
+method = "RLiViTDataloader"
+path = "/data/r-livit/R-LiViT_LiDAR/R-LiViT_LiDAR"
+sequences = []
+
+[defaults.sink]
+method = "MockSink"
+
+[defaults.handler]
+gate = 5
+
+[defaults.results]
+path = "./results"
+
+
+[[run]]
+name = "diff"
+[run.handler]
+
+method = "DiffTracker"
+rmground = false
+
+threshold = 0.2
+eps1 = 2
+min_samples1 = 10
+
+query_radius = 0.4
+
+eps2 = 1
+min_samples2 = 10
+
+boundary_check_radius = 0.1
+
+[[run]]
+name = "baseline"
+[run.handler]
+method = "Baseline"
+eps = 0.4
+min_samples = 10
